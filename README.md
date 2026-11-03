@@ -54,6 +54,9 @@ Optional: set `TWO_FACTOR_ENCRYPTION_KEY` to a 64-character hex string to enable
 authentication. Generate one with `openssl rand -hex 32`. Two-factor authentication is unavailable
 and cannot be required until this key is set.
 
+MCP is disabled by default. Set `MCP_ENABLED=1` to enable the `/mcp` endpoint, then
+authenticate with an API key generated under Settings → API keys.
+
 The connection URL format:
 
 ```bash
@@ -138,3 +141,14 @@ docker compose up --force-recreate -d
 [linkedin-url]: https://linkedin.com/company/umami-software
 [discord-shield]: https://img.shields.io/badge/Discord--blue?style=social&logo=discord
 [discord-url]: https://discord.com/invite/4dz4zcXYrQ
+
+## This fork (analytics.rensranks.dev)
+
+This repository is upstream Umami plus one local change (`biome.json`: Biome's
+VCS integration is off so Vercel CLI builds without a `.git` directory work).
+It deploys to Vercel with functions in Dublin (`vercel.json`). Set
+`DISABLE_TELEMETRY=1` and `DISABLE_UPDATES=1` in the Vercel project so neither
+the build nor the dashboard reports to umami.is; `.env.example` lists every
+variable with comments. Day-to-day operations (admin password check, users,
+database location, backups, the monthly upstream check and data retention) are
+in [docs/OPERATIONS.md](docs/OPERATIONS.md).
