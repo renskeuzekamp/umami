@@ -9,6 +9,9 @@ services:
       APP_SECRET: replace-me-with-a-random-string
       # Required for two-factor authentication, generate with: openssl rand -hex 32
       TWO_FACTOR_ENCRYPTION_KEY: replace-me-with-a-64-character-hex-string
+      # Do not phone home to umami.is (see .env.example and docs/OPERATIONS.md)
+      DISABLE_TELEMETRY: "1"
+      DISABLE_UPDATES: "1"
     depends_on:
       db:
         condition: service_healthy
